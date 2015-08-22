@@ -33,5 +33,9 @@ class OnTheMapViewController: TabBarViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func receiveLocations(Locations: [Location]) {
+        println("Got all location data")
+    }
 
 }

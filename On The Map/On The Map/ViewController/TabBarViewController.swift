@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarViewController: UIViewController {
+class TabBarViewController: APIViewController {
 
     override func viewWillAppear(animated: Bool) {
         var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "cancelTapped:")
@@ -20,6 +20,11 @@ class TabBarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        getUserLocations(receiveLocations, onError: { (title: String!, message: String!) -> () in
+            self.showMessage(title, message: message)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,4 +42,7 @@ class TabBarViewController: UIViewController {
     }
     */
 
+    func receiveLocations(Locations: [Location]){
+        preconditionFailure("Class does not override receiveLocations")
+    }
 }

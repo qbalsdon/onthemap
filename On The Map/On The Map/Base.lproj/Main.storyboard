@@ -143,15 +143,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dhV-XF-GjH">
-                                <rect key="frame" x="-5" y="64" width="600" height="487"/>
+                                <rect key="frame" x="-5" y="64" width="605" height="487"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="dhV-XF-GjH" secondAttribute="trailing" constant="-11" id="DYd-Is-2DH"/>
-                            <constraint firstItem="dhV-XF-GjH" firstAttribute="top" secondItem="sQh-69-Pxn" secondAttribute="bottom" id="VRy-TF-1Xm"/>
-                            <constraint firstItem="dhV-XF-GjH" firstAttribute="leading" secondItem="gaT-jI-GD3" secondAttribute="leadingMargin" constant="-21" id="dVz-Zr-L3r"/>
-                            <constraint firstItem="dhV-XF-GjH" firstAttribute="bottom" secondItem="OVw-T7-Zwu" secondAttribute="top" id="rEk-pg-mhp"/>
+                            <constraint firstAttribute="trailing" secondItem="dhV-XF-GjH" secondAttribute="trailing" id="2mw-RG-4pc"/>
+                            <constraint firstItem="dhV-XF-GjH" firstAttribute="top" secondItem="sQh-69-Pxn" secondAttribute="bottom" id="Jar-tG-CC7"/>
+                            <constraint firstItem="dhV-XF-GjH" firstAttribute="bottom" secondItem="OVw-T7-Zwu" secondAttribute="top" id="dpI-V1-iM5"/>
+                            <constraint firstItem="dhV-XF-GjH" firstAttribute="leading" secondItem="gaT-jI-GD3" secondAttribute="leadingMargin" constant="-21" id="p0K-Dd-q7o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="jwG-X5-2XK"/>

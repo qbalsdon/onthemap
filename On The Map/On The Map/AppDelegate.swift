@@ -14,9 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var SessionID: String!
+    var Expiration: String!
+    var UserKey: String!
 
+    var parseAppId: String!
+    var parseRestKey: String!
+    var facebookAppId: String!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let path = NSBundle.mainBundle().pathForResource("ApiKey", ofType: "plist") {
+            let keys = NSDictionary(contentsOfFile: path)
+            if let dict = keys {
+                parseAppId = keys?["ParseApplicationId"] as? String
+                parseRestKey = keys?["ParseRestApiKey"] as? String
+                facebookAppId = keys?["FacebookAppId"] as? String
+            }
+        }
+        
         return true
     }
 
