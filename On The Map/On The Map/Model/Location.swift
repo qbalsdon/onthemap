@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MapKit
 
-class Location: NSObject {
+class Location: NSObject, MKAnnotation {
     var createdAt : String!
     var firstName : String!
     var lastName : String!
@@ -19,4 +20,22 @@ class Location: NSObject {
     var objectId : String!
     var uniqueKey : String!
     var updatedAt : String!
+    
+    var coordinate: CLLocationCoordinate2D{
+        get {
+            return CLLocationCoordinate2DMake(latitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
+        }
+    }
+    
+    var title: String{
+        get {
+            return "\(firstName) \(lastName)"
+        }
+    }
+    
+    var subtitle: String{
+        get {
+            return mediaURL
+        }
+    }
 }

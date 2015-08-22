@@ -21,6 +21,7 @@
 		567F7E3B1B887ADE0004D7BA /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E3A1B887ADE0004D7BA /* ApiKey.plist */; };
 		567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3C1B8894A90004D7BA /* BaseViewController.swift */; };
 		567F7E401B88C4B40004D7BA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3F1B88C4B40004D7BA /* Location.swift */; };
+		567F7E421B88CBA80004D7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567F7E411B88CBA80004D7BA /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		567F7E3A1B887ADE0004D7BA /* ApiKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
 		567F7E3C1B8894A90004D7BA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewController/BaseViewController.swift; sourceTree = "<group>"; };
 		567F7E3F1B88C4B40004D7BA /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Model/Location.swift; sourceTree = "<group>"; };
+		567F7E411B88CBA80004D7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567F7E421B88CBA80004D7BA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +78,7 @@
 		5669F31A1B7F4B3400F75D40 = {
 			isa = PBXGroup;
 			children = (
+				567F7E411B88CBA80004D7BA /* MapKit.framework */,
 				5669F3251B7F4B3400F75D40 /* On The Map */,
 				5669F33E1B7F4B3400F75D40 /* On The MapTests */,
 				5669F3241B7F4B3400F75D40 /* Products */,

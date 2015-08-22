@@ -9,33 +9,44 @@
 import UIKit
 import MapKit
 
-class OnTheMapViewController: TabBarViewController {
+class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.        
+        mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func receiveLocations(Locations: [Location]) {
-        println("Got all location data")
+        for loc in Locations{
+            // Drop a pin
+            mapView.addAnnotation(loc)
+        }
     }
-
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if annotation is Location {
+            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
+            pinAnnotationView.canShowCallout = true
+            pinAnnotationView.animatesDrop = true
+            
+            let infoButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
+            pinAnnotationView.rightCalloutAccessoryView = infoButton
+            
+            return pinAnnotationView
+        }
+        
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        if let annotation = view.annotation as? Location {
+            println("Open: \(view.annotation.subtitle)")
+        }
+    }
 }
