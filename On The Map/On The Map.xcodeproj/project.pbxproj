@@ -17,6 +17,9 @@
 		5669F34F1B7F50AA00F75D40 /* OnTheMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F34E1B7F50AA00F75D40 /* OnTheMapViewController.swift */; };
 		5669F3511B7F530000F75D40 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F3501B7F530000F75D40 /* PeopleListViewController.swift */; };
 		5669F3531B7F55A000F75D40 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F3521B7F55A000F75D40 /* TabBarViewController.swift */; };
+		567F7E391B887AAF0004D7BA /* APIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E381B887AAF0004D7BA /* APIViewController.swift */; };
+		567F7E3B1B887ADE0004D7BA /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E3A1B887ADE0004D7BA /* ApiKey.plist */; };
+		567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3C1B8894A90004D7BA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		5669F34E1B7F50AA00F75D40 /* OnTheMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnTheMapViewController.swift; path = ViewController/OnTheMapViewController.swift; sourceTree = "<group>"; };
 		5669F3501B7F530000F75D40 /* PeopleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleListViewController.swift; path = ViewController/PeopleListViewController.swift; sourceTree = "<group>"; };
 		5669F3521B7F55A000F75D40 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = ViewController/TabBarViewController.swift; sourceTree = "<group>"; };
+		567F7E381B887AAF0004D7BA /* APIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIViewController.swift; path = ViewController/APIViewController.swift; sourceTree = "<group>"; };
+		567F7E3A1B887ADE0004D7BA /* ApiKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
+		567F7E3C1B8894A90004D7BA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewController/BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				5669F3271B7F4B3400F75D40 /* Info.plist */,
+				567F7E3A1B887ADE0004D7BA /* ApiKey.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -128,6 +135,8 @@
 				5669F34E1B7F50AA00F75D40 /* OnTheMapViewController.swift */,
 				5669F3501B7F530000F75D40 /* PeopleListViewController.swift */,
 				5669F3521B7F55A000F75D40 /* TabBarViewController.swift */,
+				567F7E381B887AAF0004D7BA /* APIViewController.swift */,
+				567F7E3C1B8894A90004D7BA /* BaseViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -214,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5669F3311B7F4B3400F75D40 /* Main.storyboard in Resources */,
+				567F7E3B1B887ADE0004D7BA /* ApiKey.plist in Resources */,
 				5669F3361B7F4B3400F75D40 /* LaunchScreen.xib in Resources */,
 				5669F3331B7F4B3400F75D40 /* Images.xcassets in Resources */,
 			);
@@ -233,10 +243,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567F7E391B887AAF0004D7BA /* APIViewController.swift in Sources */,
 				5669F3511B7F530000F75D40 /* PeopleListViewController.swift in Sources */,
 				5669F34D1B7F4FF200F75D40 /* LoginViewController.swift in Sources */,
 				5669F3291B7F4B3400F75D40 /* AppDelegate.swift in Sources */,
 				5669F34F1B7F50AA00F75D40 /* OnTheMapViewController.swift in Sources */,
+				567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */,
 				5669F3531B7F55A000F75D40 /* TabBarViewController.swift in Sources */,
 				5669F32C1B7F4B3400F75D40 /* On_The_Map.xcdatamodeld in Sources */,
 			);
@@ -436,6 +448,7 @@
 				5669F3471B7F4B3400F75D40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5669F3481B7F4B3400F75D40 /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +457,7 @@
 				5669F34A1B7F4B3400F75D40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

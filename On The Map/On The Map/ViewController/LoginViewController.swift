@@ -8,11 +8,14 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: APIViewController {
+    @IBOutlet weak var loginText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+    
+    var activeTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,10 +38,18 @@ class LoginViewController: UIViewController {
     */
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        //TODO: Add login logic
-        let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
-        //navigationController!.pushViewController(mainViewController, animated: true)
+        login(loginText.text, password: passwordText.text, onSuccess: loginSuccess, onError: loginFailed)
+    }
+    
+    func loginSuccess(sessionId: String!){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.SessionID = sessionId
         
+        let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
         navigationController!.presentViewController(mainViewController, animated: true, completion: nil)
+    }
+    
+    func loginFailed(reason: String!, details: String!){
+        showMessage(reason, message: details)
     }
 }
