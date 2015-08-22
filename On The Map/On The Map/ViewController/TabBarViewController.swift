@@ -11,11 +11,12 @@ import UIKit
 class TabBarViewController: APIViewController {
 
     override func viewWillAppear(animated: Bool) {
-        var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "cancelTapped:")
+        var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "cancelTapped:")
         navigationItem.setLeftBarButtonItems([leftAddBarButtonItem], animated: true)
         
-        var rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "cancelTapped:")
-        navigationItem.setRightBarButtonItems([rightAddBarButtonItem], animated: true)
+    var addLocation:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Pin"), style: .Plain, target: self, action: "cancelTapped:")
+        var refresh:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "cancelTapped:")
+        navigationItem.setRightBarButtonItems([refresh, addLocation], animated: true)
     }
     
     override func viewDidLoad() {

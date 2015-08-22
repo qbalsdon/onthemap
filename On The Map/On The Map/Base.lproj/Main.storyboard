@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity" translatesAutoresizingMaskIntoConstraints="NO" id="BfK-r2-cZA">
+                                <rect key="frame" x="-12" y="0.0" width="612" height="600"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qbalsdon@gmail.com" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BYW-71-YOe">
                                 <rect key="frame" x="16" y="285" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -34,7 +37,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyS-64-L0y">
                                 <rect key="frame" x="16" y="399" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tld-aT-PBE">
@@ -53,14 +56,18 @@
                         <constraints>
                             <constraint firstItem="Tld-aT-PBE" firstAttribute="leading" secondItem="BYW-71-YOe" secondAttribute="leading" id="3SX-K2-WsA"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4yl-wS-7d5"/>
+                            <constraint firstItem="BfK-r2-cZA" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="BVP-8q-Nba"/>
+                            <constraint firstItem="BfK-r2-cZA" firstAttribute="centerY" secondItem="BYW-71-YOe" secondAttribute="centerY" id="NUx-JM-cbI"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="leading" secondItem="Fiu-1E-Qxu" secondAttribute="leading" id="R8U-3r-JsM"/>
                             <constraint firstItem="Tld-aT-PBE" firstAttribute="trailing" secondItem="BYW-71-YOe" secondAttribute="trailing" id="TFk-4L-2EQ"/>
                             <constraint firstItem="Fiu-1E-Qxu" firstAttribute="leading" secondItem="BYW-71-YOe" secondAttribute="leading" id="U4w-KV-rOp"/>
                             <constraint firstItem="TyS-64-L0y" firstAttribute="leading" secondItem="i95-H3-guL" secondAttribute="leading" id="WHm-uc-A5l"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="trailing" secondItem="Fiu-1E-Qxu" secondAttribute="trailing" id="ZJP-Dh-om2"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="top" secondItem="Fiu-1E-Qxu" secondAttribute="bottom" constant="8" symbolic="YES" id="axA-3C-mzy"/>
+                            <constraint firstItem="BfK-r2-cZA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-28" id="bZ1-uW-CzF"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="cVe-Wv-pvn"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="cuq-ey-gFY"/>
+                            <constraint firstAttribute="trailing" secondItem="BfK-r2-cZA" secondAttribute="trailing" id="f5l-NL-IIC"/>
                             <constraint firstItem="TyS-64-L0y" firstAttribute="trailing" secondItem="i95-H3-guL" secondAttribute="trailing" id="lmc-UL-Fgd"/>
                             <constraint firstItem="Fiu-1E-Qxu" firstAttribute="trailing" secondItem="BYW-71-YOe" secondAttribute="trailing" id="m1F-Fg-RLi"/>
                             <constraint firstItem="TyS-64-L0y" firstAttribute="top" secondItem="i95-H3-guL" secondAttribute="bottom" constant="8" symbolic="YES" id="mC1-7D-XNj"/>
@@ -114,6 +121,18 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A7U-tq-3cz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationCell" id="fac-KZ-Vlo">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fac-KZ-Vlo" id="Tdb-Qd-LXJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fWm-sh-cUc" id="WUY-88-Lrd"/>
+                                    <outlet property="delegate" destination="fWm-sh-cUc" id="e6Q-Oa-JfB"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,6 +144,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="iJz-wH-aMb"/>
+                    <connections>
+                        <outlet property="userTable" destination="A7U-tq-3cz" id="n26-Lh-QmI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJK-hP-OgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -186,7 +208,7 @@
         <scene sceneID="CSq-gz-zBe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mun-tz-w64" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="38m-Kb-R1a"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="38m-Kb-R1a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LNT-6v-P07">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -205,7 +227,7 @@
         <scene sceneID="On1-aU-5ZY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wgG-Jw-k0d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="U7s-54-Gjl"/>
+                    <tabBarItem key="tabBarItem" title="List" image="List" id="U7s-54-Gjl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rF-kh-9M2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -221,4 +243,9 @@
             <point key="canvasLocation" x="1148" y="1883"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="List" width="32" height="32"/>
+        <image name="Map" width="32" height="32"/>
+        <image name="Udacity" width="1536" height="2048"/>
+    </resources>
 </document>

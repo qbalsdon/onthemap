@@ -8,11 +8,13 @@
 
 import UIKit
 
-class PeopleListViewController: TabBarViewController {
+class PeopleListViewController: TabBarViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var userTable: UITableView!
+    var dataSource: [Location] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -33,7 +35,29 @@ class PeopleListViewController: TabBarViewController {
     */
     
     override func receiveLocations(Locations: [Location]) {
-        println("Got all location data")
+        dataSource = Locations
+        userTable.reloadData()
     }
 
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell") as! UITableViewCell
+        let loc = dataSource[indexPath.row]
+        
+        // Set the name and image
+        cell.textLabel?.text = loc.title
+        cell.imageView?.image = UIImage(named: "Pin")
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let location = dataSource[indexPath.row] as Location
+        println("Show: \(location.subtitle)")
+    }
 }
