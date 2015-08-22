@@ -14,7 +14,7 @@ class TabBarViewController: APIViewController {
         var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "cancelTapped:")
         navigationItem.setLeftBarButtonItems([leftAddBarButtonItem], animated: true)
         
-    var addLocation:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Pin"), style: .Plain, target: self, action: "cancelTapped:")
+    var addLocation:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Pin"), style: .Plain, target: self, action: "pinTapped:")
         var refresh:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "cancelTapped:")
         navigationItem.setRightBarButtonItems([refresh, addLocation], animated: true)
     }
@@ -45,5 +45,10 @@ class TabBarViewController: APIViewController {
 
     func receiveLocations(Locations: [Location]){
         preconditionFailure("Class does not override receiveLocations")
+    }
+    
+    func pinTapped(sender: AnyObject!){
+        let nextVC = storyboard!.instantiateViewControllerWithIdentifier("AddPinController") as! UIViewController
+        navigationController!.presentViewController(nextVC, animated: true, completion: nil)
     }
 }

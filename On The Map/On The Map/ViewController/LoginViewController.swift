@@ -41,6 +41,9 @@ class LoginViewController: APIViewController {
         login(loginText.text, password: passwordText.text, onSuccess: loginSuccess, onError: loginFailed)
     }
     
+    @IBAction func singUpPressed(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+    }
     func loginSuccess(sessionId: String!, key: String!, expiration: String!){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.SessionID = sessionId
@@ -54,4 +57,6 @@ class LoginViewController: APIViewController {
     func loginFailed(reason: String!, details: String!){
         showMessage(reason, message: details)
     }
+    
+    
 }

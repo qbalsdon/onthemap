@@ -58,6 +58,6 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let location = dataSource[indexPath.row] as Location
-        println("Show: \(location.subtitle)")
+        UIApplication.sharedApplication().openURL(NSURL(string: location.subtitle)!)
     }
 }

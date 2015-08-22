@@ -22,6 +22,8 @@
 		567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3C1B8894A90004D7BA /* BaseViewController.swift */; };
 		567F7E401B88C4B40004D7BA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3F1B88C4B40004D7BA /* Location.swift */; };
 		567F7E421B88CBA80004D7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567F7E411B88CBA80004D7BA /* MapKit.framework */; };
+		567F7E471B8934AF0004D7BA /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */; };
+		567F7E491B8939DA0004D7BA /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,11 @@
 		567F7E3C1B8894A90004D7BA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewController/BaseViewController.swift; sourceTree = "<group>"; };
 		567F7E3F1B88C4B40004D7BA /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Model/Location.swift; sourceTree = "<group>"; };
 		567F7E411B88CBA80004D7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		567F7E431B89321E0004D7BA /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		567F7E441B8932240004D7BA /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		567F7E451B89322B0004D7BA /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddLocationViewController.swift; path = ViewController/AddLocationViewController.swift; sourceTree = "<group>"; };
+		567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFinderViewController.swift; path = ViewController/LocationFinderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,9 @@
 		5669F3261B7F4B3400F75D40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				567F7E431B89321E0004D7BA /* Roboto-Medium.ttf */,
+				567F7E441B8932240004D7BA /* Roboto-Regular.ttf */,
+				567F7E451B89322B0004D7BA /* Roboto-Thin.ttf */,
 				5669F3271B7F4B3400F75D40 /* Info.plist */,
 				567F7E3A1B887ADE0004D7BA /* ApiKey.plist */,
 			);
@@ -143,6 +153,8 @@
 				5669F3501B7F530000F75D40 /* PeopleListViewController.swift */,
 				5669F3521B7F55A000F75D40 /* TabBarViewController.swift */,
 				567F7E3C1B8894A90004D7BA /* BaseViewController.swift */,
+				567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */,
+				567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -258,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567F7E491B8939DA0004D7BA /* LocationFinderViewController.swift in Sources */,
 				567F7E391B887AAF0004D7BA /* APIViewController.swift in Sources */,
 				5669F3511B7F530000F75D40 /* PeopleListViewController.swift in Sources */,
 				5669F34D1B7F4FF200F75D40 /* LoginViewController.swift in Sources */,
@@ -265,6 +278,7 @@
 				567F7E401B88C4B40004D7BA /* Location.swift in Sources */,
 				5669F34F1B7F50AA00F75D40 /* OnTheMapViewController.swift in Sources */,
 				567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */,
+				567F7E471B8934AF0004D7BA /* AddLocationViewController.swift in Sources */,
 				5669F3531B7F55A000F75D40 /* TabBarViewController.swift in Sources */,
 				5669F32C1B7F4B3400F75D40 /* On_The_Map.xcdatamodeld in Sources */,
 			);

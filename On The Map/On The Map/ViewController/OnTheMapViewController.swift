@@ -46,7 +46,7 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         if let annotation = view.annotation as? Location {
-            println("Open: \(view.annotation.subtitle)")
+            UIApplication.sharedApplication().openURL(NSURL(string: view.annotation.subtitle!)!)
         }
     }
 }
