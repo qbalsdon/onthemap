@@ -11,7 +11,7 @@ import UIKit
 class PeopleListViewController: TabBarViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userTable: UITableView!
-    var dataSource: [Location] = []
+    var dataSource: [LocationAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
-    override func receiveLocations(Locations: [Location]) {
+    override func receiveLocations(Locations: [LocationAnnotation]) {
         dataSource = Locations
         userTable.reloadData()
     }
@@ -46,7 +46,7 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let location = dataSource[indexPath.row] as Location
+        let location = dataSource[indexPath.row] as LocationAnnotation
         UIApplication.sharedApplication().openURL(NSURL(string: location.subtitle)!)
     }
 }

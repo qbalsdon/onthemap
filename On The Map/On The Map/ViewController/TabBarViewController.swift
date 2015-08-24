@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarViewController: APIViewController {
+class TabBarViewController: BaseViewController {
     
     override func viewWillAppear(animated: Bool) {
         var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "logout:")
@@ -32,27 +32,24 @@ class TabBarViewController: APIViewController {
     }
     
     func refresh(){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        getUserLocations(receiveLocations, onError: { (title: String!, message: String!) -> () in
+        getApiClient().getUserLocations(receiveLocations, onError: { (title: String!, message: String!) -> () in
             self.showMessage(title, message: message)
         })
-        
     }
     
-    func receiveLocations(Locations: [Location]){
+    func receiveLocations(Locations: [LocationAnnotation]){
         preconditionFailure("Class does not override receiveLocations")
     }
     
     func pinTapped(sender: AnyObject!){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        checkUserLocation(appDelegate.userKey,
-            onSuccess: {
-                (exists: Bool!, objectId: String!) -> () in
+        getApiClient().checkUserLocation(
+            {
+                (exists: Bool!, location: LocationAnnotation!) -> () in
                 if  !exists {
                     self.addPin(nil)
                 } else {
-                    self.checkWantToAdd(objectId)
+                    self.checkWantToAdd(location)
                 }
             },
             onError: { (title: String!, message: String!) -> () in
@@ -62,28 +59,24 @@ class TabBarViewController: APIViewController {
     }
     
     func logout(sender: AnyObject!){
-        /*let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        deleteUserLocation(appDelegate.UserKey,
-        onSuccess: { (result: Bool!) -> () in
-        println("sweet")
-        },
-        onError: {
-        (title: String!, message: String!) -> () in
-        self.showMessage(title, message: message)
-        })*/
+        getApiClient().logout(closeView, onError: showMessage)
     }
     
-    func checkWantToAdd(objectId: String!){
+    func closeView(){
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func checkWantToAdd(location: LocationAnnotation!){
         showMessageWithTwoButtons("User location found", message: "Would you like to overwrite your location?", positiveText: "Yes", onSuccess: {
             () -> () in
-                self.addPin(objectId)
+                self.addPin(location)
         })
     }
     
-    func addPin(objectId: String!){
+    func addPin(location: LocationAnnotation!){
         let nextVC = storyboard!.instantiateViewControllerWithIdentifier("AddPinController") as! UINavigationController
         let addLoc = nextVC.viewControllers[0] as! AddLocationViewController
-        addLoc.objectId = objectId
+        addLoc.location = location
         navigationController!.presentViewController(nextVC, animated: true, completion: nil)
     }
 }

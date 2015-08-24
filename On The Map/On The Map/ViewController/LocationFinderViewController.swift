@@ -9,11 +9,11 @@
 import UIKit
 import MapKit
 
-class LocationFinderViewController: APIViewController, UITextFieldDelegate {
+class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
 
     var locationText: String!
-    var userLocation: Location!
-    var objectId: String!
+    var userLocation: LocationAnnotation!
+    var oldLocation: LocationAnnotation!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var shareLinkTextField: UITextField!
@@ -49,14 +49,14 @@ class LocationFinderViewController: APIViewController, UITextFieldDelegate {
     
     //MARK: Events
     @IBAction func submitButtonPressed(sender: AnyObject) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        userLocation.mediaURL = shareLinkTextField.text
-        userLocation.uniqueKey = appDelegate.userKey
-        userLocation.objectId = objectId
-        if objectId != nil {
-            updateUserLocation(userLocation, mapString: locationText, onSuccess: closeView, onError: showError)
+        userLocation.studentInfo.mediaURL = shareLinkTextField.text
+        userLocation.studentInfo.uniqueKey = getApiClient().userKey
+        userLocation.studentInfo.mapString = locationText
+        if oldLocation != nil {
+            userLocation.studentInfo.objectId = oldLocation.studentInfo.objectId
+            getApiClient().updateUserLocation(userLocation, onSuccess: closeView, onError: showError)
         } else {
-            postUserLocation(userLocation, mapString: locationText, onSuccess: closeView, onError: showError)
+            getApiClient().postUserLocation(userLocation, onSuccess: closeView, onError: showError)
         }
     }
     
@@ -70,6 +70,9 @@ class LocationFinderViewController: APIViewController, UITextFieldDelegate {
         request.naturalLanguageQuery = searchText
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let search = MKLocalSearch(request: request)
+        
+        //TODO: Show search popup
+        
         search.startWithCompletionHandler {
             (response: MKLocalSearchResponse!, error: NSError!) in
             
@@ -79,11 +82,11 @@ class LocationFinderViewController: APIViewController, UITextFieldDelegate {
                 var span = MKCoordinateSpanMake(0.075, 0.075)
                 var region = MKCoordinateRegion(center: firstLocation.placemark.coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
-                self.userLocation = Location()
-                self.userLocation.firstName = "Quintin"
-                self.userLocation.lastName = "Balsdon"
-                self.userLocation.latitude = firstLocation.placemark.location.coordinate.latitude
-                self.userLocation.longitude = firstLocation.placemark.location.coordinate.longitude
+                self.userLocation = LocationAnnotation()
+                self.userLocation.studentInfo.firstName = self.getApiClient().userInfo.firstName
+                self.userLocation.studentInfo.lastName = self.getApiClient().userInfo.lastName
+                self.userLocation.studentInfo.latitude = firstLocation.placemark.location.coordinate.latitude
+                self.userLocation.studentInfo.longitude = firstLocation.placemark.location.coordinate.longitude
                 self.mapView.addAnnotation(self.userLocation)
             }
         }
@@ -92,6 +95,7 @@ class LocationFinderViewController: APIViewController, UITextFieldDelegate {
     func closeView(){
         navigationController?.dismissViewControllerAnimated(true, completion: nil);
     }
+    
     func showError(reason: String!, details: String!){
         showMessage(reason, message: details)
     }

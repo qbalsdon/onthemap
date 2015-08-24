@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: APIViewController {
+class LoginViewController: BaseViewController {
     @IBOutlet weak var loginText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     
@@ -26,37 +26,28 @@ class LoginViewController: APIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        login(loginText.text, password: passwordText.text, onSuccess: loginSuccess, onError: loginFailed)
+        getApiClient().login(loginText.text, password: passwordText.text, onSuccess: loginSuccess, onError: loginFailed)
     }
     
     @IBAction func singUpPressed(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
     }
-    func loginSuccess(sessionId: String!, key: String!, expiration: String!){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.sessionID = sessionId
-        appDelegate.userKey = key
-        appDelegate.expiration = expiration
-        
-        let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
-        navigationController!.presentViewController(mainViewController, animated: true, completion: nil)
+    func loginSuccess(){
+        getApiClient().getUserData(getApiClient().userKey, onSuccess: proceedToNext,
+            onError: { (title: String!, message: String!) -> () in
+                self.showMessage(title, message: message)
+            }
+        )
     }
     
     func loginFailed(reason: String!, details: String!){
         showMessage(reason, message: details)
     }
     
-    
+    func proceedToNext(data: StudentBio!){
+        getApiClient().userInfo = data
+        let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
+        navigationController!.presentViewController(mainViewController, animated: true, completion: nil)
+    }
 }

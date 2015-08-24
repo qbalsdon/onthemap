@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +21,10 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getApiClient() -> ApiClient {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.apiClient
+    }
 
     //MARK: Alerts
     func showMessage(title: String!, message: String!){

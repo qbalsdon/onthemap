@@ -13,25 +13,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var sessionID: String!
-    var expiration: String!
-    var userKey: String!
-
-    var parseAppId: String!
-    var parseRestKey: String!
-    var facebookAppId: String!
+    var apiClient: ApiClient!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let path = NSBundle.mainBundle().pathForResource("ApiKey", ofType: "plist") {
-            let keys = NSDictionary(contentsOfFile: path)
-            if let dict = keys {
-                parseAppId = keys?["ParseApplicationId"] as? String
-                parseRestKey = keys?["ParseRestApiKey"] as? String
-                facebookAppId = keys?["FacebookAppId"] as? String
-            }
-        }
+        apiClient = ApiClient()
         
         return true
     }

@@ -17,16 +17,18 @@
 		5669F34F1B7F50AA00F75D40 /* OnTheMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F34E1B7F50AA00F75D40 /* OnTheMapViewController.swift */; };
 		5669F3511B7F530000F75D40 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F3501B7F530000F75D40 /* PeopleListViewController.swift */; };
 		5669F3531B7F55A000F75D40 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5669F3521B7F55A000F75D40 /* TabBarViewController.swift */; };
-		567F7E391B887AAF0004D7BA /* APIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E381B887AAF0004D7BA /* APIViewController.swift */; };
 		567F7E3B1B887ADE0004D7BA /* ApiKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E3A1B887ADE0004D7BA /* ApiKey.plist */; };
 		567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3C1B8894A90004D7BA /* BaseViewController.swift */; };
-		567F7E401B88C4B40004D7BA /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3F1B88C4B40004D7BA /* Location.swift */; };
+		567F7E401B88C4B40004D7BA /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E3F1B88C4B40004D7BA /* LocationAnnotation.swift */; };
 		567F7E421B88CBA80004D7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567F7E411B88CBA80004D7BA /* MapKit.framework */; };
 		567F7E471B8934AF0004D7BA /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */; };
 		567F7E491B8939DA0004D7BA /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */; };
 		56A5FB701B89F03100A3D30C /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E431B89321E0004D7BA /* Roboto-Medium.ttf */; };
 		56A5FB711B89F03100A3D30C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E441B8932240004D7BA /* Roboto-Regular.ttf */; };
 		56A5FB721B89F03100A3D30C /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E451B89322B0004D7BA /* Roboto-Thin.ttf */; };
+		56A5FB741B8B0B9B00A3D30C /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A5FB731B8B0B9B00A3D30C /* ApiClient.swift */; };
+		56A5FB761B8B189F00A3D30C /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A5FB751B8B189F00A3D30C /* StudentInformation.swift */; };
+		56A5FB781B8B245B00A3D30C /* StudentBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A5FB771B8B245B00A3D30C /* StudentBio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,16 +56,18 @@
 		5669F34E1B7F50AA00F75D40 /* OnTheMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnTheMapViewController.swift; path = ViewController/OnTheMapViewController.swift; sourceTree = "<group>"; };
 		5669F3501B7F530000F75D40 /* PeopleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleListViewController.swift; path = ViewController/PeopleListViewController.swift; sourceTree = "<group>"; };
 		5669F3521B7F55A000F75D40 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = ViewController/TabBarViewController.swift; sourceTree = "<group>"; };
-		567F7E381B887AAF0004D7BA /* APIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIViewController.swift; path = ViewController/APIViewController.swift; sourceTree = "<group>"; };
 		567F7E3A1B887ADE0004D7BA /* ApiKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKey.plist; sourceTree = "<group>"; };
 		567F7E3C1B8894A90004D7BA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ViewController/BaseViewController.swift; sourceTree = "<group>"; };
-		567F7E3F1B88C4B40004D7BA /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Model/Location.swift; sourceTree = "<group>"; };
+		567F7E3F1B88C4B40004D7BA /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationAnnotation.swift; path = Model/LocationAnnotation.swift; sourceTree = "<group>"; };
 		567F7E411B88CBA80004D7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		567F7E431B89321E0004D7BA /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		567F7E441B8932240004D7BA /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		567F7E451B89322B0004D7BA /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddLocationViewController.swift; path = ViewController/AddLocationViewController.swift; sourceTree = "<group>"; };
 		567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFinderViewController.swift; path = ViewController/LocationFinderViewController.swift; sourceTree = "<group>"; };
+		56A5FB731B8B0B9B00A3D30C /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiClient.swift; path = Model/ApiClient.swift; sourceTree = "<group>"; };
+		56A5FB751B8B189F00A3D30C /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = Model/StudentInformation.swift; sourceTree = "<group>"; };
+		56A5FB771B8B245B00A3D30C /* StudentBio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentBio.swift; path = Model/StudentBio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +169,10 @@
 		567F7E3E1B88C4640004D7BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				567F7E381B887AAF0004D7BA /* APIViewController.swift */,
-				567F7E3F1B88C4B40004D7BA /* Location.swift */,
+				567F7E3F1B88C4B40004D7BA /* LocationAnnotation.swift */,
+				56A5FB731B8B0B9B00A3D30C /* ApiClient.swift */,
+				56A5FB751B8B189F00A3D30C /* StudentInformation.swift */,
+				56A5FB771B8B245B00A3D30C /* StudentBio.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -276,17 +282,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A5FB761B8B189F00A3D30C /* StudentInformation.swift in Sources */,
 				567F7E491B8939DA0004D7BA /* LocationFinderViewController.swift in Sources */,
-				567F7E391B887AAF0004D7BA /* APIViewController.swift in Sources */,
 				5669F3511B7F530000F75D40 /* PeopleListViewController.swift in Sources */,
 				5669F34D1B7F4FF200F75D40 /* LoginViewController.swift in Sources */,
 				5669F3291B7F4B3400F75D40 /* AppDelegate.swift in Sources */,
-				567F7E401B88C4B40004D7BA /* Location.swift in Sources */,
+				567F7E401B88C4B40004D7BA /* LocationAnnotation.swift in Sources */,
 				5669F34F1B7F50AA00F75D40 /* OnTheMapViewController.swift in Sources */,
+				56A5FB781B8B245B00A3D30C /* StudentBio.swift in Sources */,
 				567F7E3D1B8894A90004D7BA /* BaseViewController.swift in Sources */,
 				567F7E471B8934AF0004D7BA /* AddLocationViewController.swift in Sources */,
 				5669F3531B7F55A000F75D40 /* TabBarViewController.swift in Sources */,
 				5669F32C1B7F4B3400F75D40 /* On_The_Map.xcdatamodeld in Sources */,
+				56A5FB741B8B0B9B00A3D30C /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import UIKit
 
 class AddLocationViewController: UIViewController {
-    var objectId: String!
+    var location: LocationAnnotation!
     
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var findButton: UIButton!
@@ -46,12 +46,12 @@ class AddLocationViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destination = segue.destinationViewController as! LocationFinderViewController
-        destination.objectId = objectId
+        destination.oldLocation = location
         destination.locationText = locationTextField.text
     }
     
     func cancelTapped(sender: AnyObject!){
-        navigationController?.dismissViewControllerAnimated(true, completion: nil);
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
