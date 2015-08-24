@@ -12,6 +12,7 @@ class APIViewController: BaseViewController {
     
     let POST = "POST"
     let GET = "GET"
+    let PUT = "PUT"
     let DELETE = "DELETE"
     
     let UDACITY_BASE_URL = "https://www.udacity.com/api/"
@@ -23,7 +24,10 @@ class APIViewController: BaseViewController {
     
     //MARK: Generic API
     func apiCall(baseUrl: String!, apiMethod: String!, httpMethod: String!, headers: NSDictionary!, httpBody: String!, onSuccess: (AnyObject!) -> (), onError: (String!, String!) -> ()){
-        let request = NSMutableURLRequest(URL: NSURL(string: baseUrl + apiMethod)!)
+        let stringUrl = baseUrl + apiMethod
+        var urlStr : String = stringUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        var url : NSURL = NSURL(string: urlStr)!
+        let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = httpMethod
         
         if (headers != nil){
@@ -81,10 +85,73 @@ class APIViewController: BaseViewController {
     //MARK: Parse Functions
     func getUserLocations(onSuccess: ([Location]) -> (), onError: (String!, String!) -> ()){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let loginHeaders = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey, "Accept" : "application/json"]
-        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation", httpMethod: GET, headers: loginHeaders, httpBody: nil, onSuccess: {
+        let headers = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey, "Accept" : "application/json"]
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation", httpMethod: GET, headers: headers, httpBody: nil, onSuccess: {
             (result: AnyObject!) -> Void in
                 self.parseLocations(result,onSuccess: onSuccess, onError: onError)
+            }, onError: onError)
+    }
+    
+    func postUserLocation(locationInfo: Location!, mapString: String!, onSuccess: () -> (), onError: (String!, String!) -> ()){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let headers = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey, "Accept" : "application/json"]
+        let body = "{\"uniqueKey\": \"\(locationInfo.uniqueKey)\", \"firstName\": \"\(locationInfo.firstName)\", \"lastName\": \"\(locationInfo.lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(locationInfo.mediaURL)\",\"latitude\": \(locationInfo.latitude), \"longitude\": \(locationInfo.longitude)}"
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation", httpMethod: POST, headers: headers, httpBody: body, onSuccess: {
+            (result: AnyObject!) -> Void in
+            if let createdAt = result.valueForKey("createdAt") as? String, let objectId = result.valueForKey("objectId") as? String{
+                onSuccess()
+                return
+            }
+            onError("Location not saved","Please try again later")
+            }, onError: onError)
+    }
+    
+    func updateUserLocation(locationInfo: Location!, mapString: String!, onSuccess: () -> (), onError: (String!, String!) -> ()){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let headers = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey, "Accept" : "application/json"]
+        
+        let body = "{\"uniqueKey\": \"\(locationInfo.uniqueKey)\", \"firstName\": \"\(locationInfo.firstName)\", \"lastName\": \"\(locationInfo.lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(locationInfo.mediaURL)\",\"latitude\": \(locationInfo.latitude), \"longitude\": \(locationInfo.longitude)}"
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation/\(locationInfo.objectId)", httpMethod: PUT, headers: headers, httpBody: body, onSuccess: {
+            (result: AnyObject!) -> Void in
+            println(result)
+            if let createdAt = result.valueForKey("updatedAt") as? String{
+                onSuccess()
+                return
+            }
+            onError("Location not saved","Please try again later")
+            }, onError: onError)
+    }
+    
+    func checkUserLocation(userKey: String!, onSuccess: (Bool!, String!) -> (), onError: (String!, String!) -> ()){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let headers = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey]
+        
+        let whereClause = "where={\"uniqueKey\":\"\(userKey)\"}"//.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation?\(whereClause)", httpMethod: GET, headers: headers, httpBody: nil, onSuccess: {
+            (result: AnyObject!) -> Void in
+                if let locationData = result.valueForKey("results") as? NSArray{
+                    if locationData.count == 0{
+                        onSuccess(false, nil)
+                        return
+                    }
+                    onSuccess(true, locationData[0].valueForKey("objectId") as! String)
+                }
+                onSuccess(false, nil)
+            }, onError: onError)
+    }
+    
+    func deleteUserLocation(userKey: String!, onSuccess: (Bool!) -> (), onError: (String!, String!) -> ()){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let headers = ["X-Parse-Application-Id" : appDelegate.parseAppId, "X-Parse-REST-API-Key" : appDelegate.parseRestKey, "Accept" : "application/json"]
+        
+        let whereClause = "where={\"uniqueKey\":\"\(appDelegate.userKey)\"}".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation?\(whereClause)", httpMethod: DELETE, headers: headers, httpBody: nil, onSuccess: {
+            (result: AnyObject!) -> Void in
+            if let locationData = result.valueForKey("results") as? NSArray{
+                onSuccess(locationData.count > 0)
+                return
+            }
+            onError("Location not deleted","Please try again later")
             }, onError: onError)
     }
     
@@ -109,7 +176,7 @@ class APIViewController: BaseViewController {
         }
     }
     
-    //MARK: Parsing methods
+    //MARK: Data parsing methods
     func parseLogin(parsedResult: AnyObject!, onSuccess: (String!, String!, String!) -> (), onError: (String!, String!) -> ()){
         if let status = parsedResult.valueForKey("status") as? Int{
             if status == 403{
@@ -118,7 +185,6 @@ class APIViewController: BaseViewController {
                 return
             }
         }
-        
         if let loginSession = parsedResult.valueForKey("session") as? NSDictionary,
             accountDetail = parsedResult.valueForKey("account") as? NSDictionary {
                 if let sessionId = loginSession["id"] as? String,

@@ -13,9 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var SessionID: String!
-    var Expiration: String!
-    var UserKey: String!
+    var sessionID: String!
+    var expiration: String!
+    var userKey: String!
 
     var parseAppId: String!
     var parseRestKey: String!

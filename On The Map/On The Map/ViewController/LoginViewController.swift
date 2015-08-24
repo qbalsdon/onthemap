@@ -46,9 +46,9 @@ class LoginViewController: APIViewController {
     }
     func loginSuccess(sessionId: String!, key: String!, expiration: String!){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.SessionID = sessionId
-        appDelegate.UserKey = key
-        appDelegate.Expiration = expiration
+        appDelegate.sessionID = sessionId
+        appDelegate.userKey = key
+        appDelegate.expiration = expiration
         
         let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
         navigationController!.presentViewController(mainViewController, animated: true, completion: nil)

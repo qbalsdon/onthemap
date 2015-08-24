@@ -23,6 +23,8 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
     }
     
     override func receiveLocations(Locations: [Location]) {
+        let removeAnnotation = mapView.annotations.filter { $0 !== self.mapView.userLocation }
+        mapView.removeAnnotations(removeAnnotation)
         for loc in Locations{
             // Drop a pin
             mapView.addAnnotation(loc)

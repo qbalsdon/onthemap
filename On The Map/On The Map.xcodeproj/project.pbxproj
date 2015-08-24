@@ -24,6 +24,9 @@
 		567F7E421B88CBA80004D7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 567F7E411B88CBA80004D7BA /* MapKit.framework */; };
 		567F7E471B8934AF0004D7BA /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E461B8934AF0004D7BA /* AddLocationViewController.swift */; };
 		567F7E491B8939DA0004D7BA /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F7E481B8939DA0004D7BA /* LocationFinderViewController.swift */; };
+		56A5FB701B89F03100A3D30C /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E431B89321E0004D7BA /* Roboto-Medium.ttf */; };
+		56A5FB711B89F03100A3D30C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E441B8932240004D7BA /* Roboto-Regular.ttf */; };
+		56A5FB721B89F03100A3D30C /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567F7E451B89322B0004D7BA /* Roboto-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +252,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A5FB701B89F03100A3D30C /* Roboto-Medium.ttf in Resources */,
+				56A5FB711B89F03100A3D30C /* Roboto-Regular.ttf in Resources */,
+				56A5FB721B89F03100A3D30C /* Roboto-Thin.ttf in Resources */,
 				5669F3311B7F4B3400F75D40 /* Main.storyboard in Resources */,
 				567F7E3B1B887ADE0004D7BA /* ApiKey.plist in Resources */,
 				5669F3361B7F4B3400F75D40 /* LaunchScreen.xib in Resources */,
