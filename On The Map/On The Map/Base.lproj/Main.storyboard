@@ -116,13 +116,13 @@
                                 <exclude reference="IIb-eR-3H2"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="62y-F4-igl"/>
+                                <exclude reference="X1i-Zd-qVo"/>
+                                <exclude reference="aGZ-Ji-Wcg"/>
                                 <exclude reference="B0l-2Z-K1b"/>
                                 <exclude reference="ChI-RD-6kV"/>
                                 <exclude reference="IYZ-Q7-ddD"/>
                                 <exclude reference="cB0-DD-Eh3"/>
-                                <exclude reference="62y-F4-igl"/>
-                                <exclude reference="X1i-Zd-qVo"/>
-                                <exclude reference="aGZ-Ji-Wcg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -131,13 +131,13 @@
                                 <include reference="IIb-eR-3H2"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="62y-F4-igl"/>
+                                <include reference="X1i-Zd-qVo"/>
+                                <include reference="aGZ-Ji-Wcg"/>
                                 <include reference="B0l-2Z-K1b"/>
                                 <include reference="ChI-RD-6kV"/>
                                 <include reference="IYZ-Q7-ddD"/>
                                 <include reference="cB0-DD-Eh3"/>
-                                <include reference="62y-F4-igl"/>
-                                <include reference="X1i-Zd-qVo"/>
-                                <include reference="aGZ-Ji-Wcg"/>
                             </mask>
                         </variation>
                     </view>
@@ -232,7 +232,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="studying" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGA-La-WQ8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studying" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGA-La-WQ8">
                                 <rect key="frame" x="242" y="44" width="117" height="36"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636050000003" blue="0.74242424240000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,7 +241,7 @@
                                     <rect key="frame" x="243" y="43" width="115" height="35"/>
                                 </variation>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-eu-QL0">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-eu-QL0">
                                 <rect key="frame" x="0.0" y="158" width="600" height="155"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your location here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nt3-fF-DRV">
@@ -253,7 +253,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type Location Here" placeholder="Type Location Here" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ag2-SZ-niC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type Location Here" placeholder="Type Location Here" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ag2-SZ-niC">
                                         <rect key="frame" x="8" y="73" width="584" height="36"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -281,7 +281,7 @@
                                     <rect key="frame" x="0.0" y="155" width="600" height="358"/>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="today?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhC-H3-8Cb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhC-H3-8Cb">
                                 <rect key="frame" x="257" y="88" width="86" height="36"/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636050000003" blue="0.74242424240000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -290,7 +290,7 @@
                                     <rect key="frame" x="254" y="86" width="93" height="35"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Where are you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rt-U7-5fv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rt-U7-5fv">
                                 <rect key="frame" x="208" y="0.0" width="186" height="36"/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636052439457" blue="0.74242424242424243" alpha="1" colorSpace="calibratedRGB"/>

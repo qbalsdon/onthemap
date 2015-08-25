@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var loginText: UITextField!
@@ -15,7 +16,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var udacityLoginButton: UIButton!
     
     var activeTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButtonRef.readPermissions = ["public_profile"]
@@ -26,6 +27,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     
     override func viewWillAppear(animated: Bool) {
         if (FBSDKAccessToken.currentAccessToken() != nil){
+            showLoadingIndeterminate("Logging in...")
             getApiClient().loginWithFacebook(loginSuccess, onError: loginFailed)
         }
     }
@@ -36,6 +38,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     }
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
+        showLoadingIndeterminate("Logging in...")
         getApiClient().login(loginText.text, password: passwordText.text, onSuccess: loginSuccess, onError: loginFailed)
     }
     
@@ -51,12 +54,14 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginFailed(reason: String!, details: String!){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()
         showMessage(reason, message: details)
     }
     
     func proceedToNext(data: StudentBio!){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         getApiClient().userInfo = data
         let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
         navigationController!.presentViewController(mainViewController, animated: true, completion: nil)
@@ -72,6 +77,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
             showMessage("Cancelled", message: "Facebook request cancelled")
         }
         else {
+            
             getApiClient().loginWithFacebook(loginSuccess, onError: loginFailed)
         }
     }

@@ -32,6 +32,7 @@ class TabBarViewController: BaseViewController {
     }
     
     func refresh(){
+        showLoadingIndeterminate("Downloading Locations")
         getApiClient().getUserLocations(100, skip: 0, onSuccess: receiveLocations, onError: { (title: String!, message: String!) -> () in
             self.showMessage(title, message: message)
         })

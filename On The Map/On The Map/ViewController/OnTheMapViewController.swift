@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MBProgressHUD
 
 class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
     
@@ -23,6 +24,7 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
     }
     
     override func receiveLocations(Locations: [LocationAnnotation]) {
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         let removeAnnotation = mapView.annotations.filter { $0 !== self.mapView.userLocation }
         mapView.removeAnnotations(removeAnnotation)
         for loc in Locations{

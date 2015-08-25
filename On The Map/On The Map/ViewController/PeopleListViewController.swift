@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class PeopleListViewController: TabBarViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -24,6 +25,7 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     }
     
     override func receiveLocations(Locations: [LocationAnnotation]) {
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         dataSource = Locations
         userTable.reloadData()
     }

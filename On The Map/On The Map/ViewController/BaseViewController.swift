@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class BaseViewController: UIViewController {
     
@@ -54,5 +55,12 @@ class BaseViewController: UIViewController {
         alertController.addAction(cancel)
         
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    //MBProgressHUD
+    func showLoadingIndeterminate(message: String!){
+        var loadingNotification = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.Indeterminate
+        loadingNotification.labelText = message
     }
 }

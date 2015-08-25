@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MBProgressHUD
 
 class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
 
@@ -52,6 +53,7 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
         userLocation.studentInfo.mediaURL = shareLinkTextField.text
         userLocation.studentInfo.uniqueKey = getApiClient().userKey
         userLocation.studentInfo.mapString = locationText
+        showLoadingIndeterminate("Uploading location")
         if oldLocation != nil {
             userLocation.studentInfo.objectId = oldLocation.studentInfo.objectId
             getApiClient().updateUserLocation(userLocation, onSuccess: closeView, onError: showError)
@@ -66,15 +68,17 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
     
     //MARK: Helper methods
     func searchInMap(searchText : String!) {
+        showLoadingIndeterminate("Finding location...")
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchText
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let search = MKLocalSearch(request: request)
         
-        //TODO: Show search popup
-        
         search.startWithCompletionHandler {
             (response: MKLocalSearchResponse!, error: NSError!) in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                MBProgressHUD.hideAllHUDsForView(view, animated: true)
+            }
             
             if response.mapItems != nil && response.mapItems.count > 0 {
                 let firstLocation = response.mapItems[0] as! MKMapItem
@@ -93,10 +97,12 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func closeView(){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         navigationController?.dismissViewControllerAnimated(true, completion: nil);
     }
     
     func showError(reason: String!, details: String!){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         showMessage(reason, message: details)
     }
 }

@@ -1,0 +1,12 @@
+platform :ios, "8.0"
+use_frameworks!
+pod 'MBProgressHUD', '~> 0.9.1'
+
+target 'On The Map' do
+
+end
+
+target 'On The MapTests' do
+
+end
+
