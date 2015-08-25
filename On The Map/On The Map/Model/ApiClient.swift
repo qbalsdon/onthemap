@@ -36,6 +36,7 @@ class ApiClient: NSObject {
                 facebookAppId = keys?["FacebookAppId"] as? String
             }
         }
+        userInfo = StudentBio()
 
         super.init()
     }
@@ -112,13 +113,21 @@ class ApiClient: NSObject {
     }
     
     //MARK: Udacity Functions
-    func login(username: String!, password: String!, onSuccess: () -> (), onError: (String!, String!) -> ()){
-        let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
-        
+    func login(body: String!, onSuccess: () -> (), onError: (String!, String!) -> ()){
         apiCall(UDACITY_BASE_URL, apiMethod: "session", httpMethod: POST, httpBody: body, onSuccess: {
             (result: AnyObject!) -> Void in
-                self.parseLogin(result, onSuccess: onSuccess, onError: onError)
+            self.parseLogin(result, onSuccess: onSuccess, onError: onError)
             }, onError: onError)
+    }
+    
+    func login(username: String!, password: String!, onSuccess: () -> (), onError: (String!, String!) -> ()){
+        let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
+        login(body, onSuccess: onSuccess, onError: onError)
+    }
+    
+    func loginWithFacebook(onSuccess: () -> (), onError: (String!, String!) -> ()){
+        let body = "{\"facebook_mobile\": {\"access_token\": \"\(FBSDKAccessToken.currentAccessToken().tokenString);\"}}"
+        login(body, onSuccess: onSuccess, onError: onError)
     }
     
     func getUserData(userKey: String!, onSuccess: (data: StudentBio!) -> (), onError: (String!, String!) -> ()){
@@ -136,13 +145,13 @@ class ApiClient: NSObject {
                 onSuccess()
                 return
             }
-            onError("Error", "Unable to log out")
+            onError("Error", "Connection problem: Unable to log out.")
             }, onError: onError)
     }
     
     //MARK: Parse Functions
-    func getUserLocations(onSuccess: ([LocationAnnotation]) -> (), onError: (String!, String!) -> ()){
-        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation", httpMethod: GET, httpBody: nil, onSuccess: {
+    func getUserLocations(limit: Int32, skip: Int32, onSuccess: ([LocationAnnotation]) -> (), onError: (String!, String!) -> ()){
+        apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation?limit=\(limit)&skip=\(skip)", httpMethod: GET, httpBody: nil, onSuccess: {
             (result: AnyObject!) -> Void in
             self.parseLocations(result,onSuccess: onSuccess, onError: onError)
             }, onError: onError)
@@ -157,7 +166,7 @@ class ApiClient: NSObject {
                 onSuccess()
                 return
             }
-            onError("Location not saved","Please try again later")
+            onError("Location not saved","Connection problem. Please try again later")
             }, onError: onError)
     }
     
@@ -171,7 +180,7 @@ class ApiClient: NSObject {
                 onSuccess()
                 return
             }
-            onError("Location not saved","Please try again later")
+            onError("Location not saved","Connection Problem. Please try again later")
             }, onError: onError)
     }
     
@@ -200,7 +209,7 @@ class ApiClient: NSObject {
                 onSuccess(locationData.count > 0)
                 return
             }
-            onError("Location not deleted","Please try again later")
+            onError("Location not deleted","Connection problem. Please try again later")
             }, onError: onError)
     }
     

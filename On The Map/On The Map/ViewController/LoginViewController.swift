@@ -8,19 +8,28 @@
 
 import UIKit
 
-class LoginViewController: BaseViewController {
+class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var loginText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var loginButtonRef: FBSDKLoginButton!
+    @IBOutlet weak var udacityLoginButton: UIButton!
     
     var activeTextField: UITextField!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButtonRef.readPermissions = ["public_profile"]
+        
+        loginButtonRef.layer.cornerRadius = 10
+        udacityLoginButton.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(animated: Bool) {
+        if (FBSDKAccessToken.currentAccessToken() != nil){
+            getApiClient().loginWithFacebook(loginSuccess, onError: loginFailed)
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,6 +51,8 @@ class LoginViewController: BaseViewController {
     }
     
     func loginFailed(reason: String!, details: String!){
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
         showMessage(reason, message: details)
     }
     
@@ -49,5 +60,45 @@ class LoginViewController: BaseViewController {
         getApiClient().userInfo = data
         let mainViewController = storyboard!.instantiateViewControllerWithIdentifier("MainTabController") as! UITabBarController
         navigationController!.presentViewController(mainViewController, animated: true, completion: nil)
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        println("User Logged In")
+        
+        if ((error) != nil) {
+            showMessage("Error", message: "Login error. Please try again later")
+        }
+        else if result.isCancelled {
+            showMessage("Cancelled", message: "Facebook request cancelled")
+        }
+        else {
+            getApiClient().loginWithFacebook(loginSuccess, onError: loginFailed)
+        }
+    }
+    
+    /*func getUserFacebookData(){
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters:["fields": "first_name, last_name"])
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil){
+                // Process error
+                self.showMessage("Error", message: "Could not get account information")
+                let loginManager = FBSDKLoginManager()
+                loginManager.logOut()
+            } else {
+                println("fetched user: \(result)")
+                let userFName : NSString = result.valueForKey("first_name") as! NSString
+                let userLName : NSString = result.valueForKey("last_name") as! NSString
+                var bio = StudentBio()
+                bio.firstName = userFName as! String
+                bio.lastName = userLName as! String
+                bio.isFacebook = true
+                self.proceedToNext(bio)
+            }
+        })
+    }*/
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("User Logged Out")
     }
 }

@@ -32,7 +32,7 @@ class TabBarViewController: BaseViewController {
     }
     
     func refresh(){
-        getApiClient().getUserLocations(receiveLocations, onError: { (title: String!, message: String!) -> () in
+        getApiClient().getUserLocations(100, skip: 0, onSuccess: receiveLocations, onError: { (title: String!, message: String!) -> () in
             self.showMessage(title, message: message)
         })
     }
@@ -59,7 +59,9 @@ class TabBarViewController: BaseViewController {
     }
     
     func logout(sender: AnyObject!){
-        getApiClient().logout(closeView, onError: showMessage)
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        getApiClient().logout(closeView, onError: showMessage)        
     }
     
     func closeView(){

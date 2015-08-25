@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k7P-MO-ukO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,10 +32,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity" translatesAutoresizingMaskIntoConstraints="NO" id="BfK-r2-cZA">
-                                <rect key="frame" x="-12" y="0.0" width="612" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity" translatesAutoresizingMaskIntoConstraints="NO" id="4yE-WM-Qsa">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qbalsdon@gmail.com" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BYW-71-YOe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BYW-71-YOe">
                                 <rect key="frame" x="16" y="285" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -55,8 +56,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="10" y="356" width="568" height="21"/>
+                                </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qjay1983!" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fiu-1E-Qxu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fiu-1E-Qxu">
                                 <rect key="frame" x="16" y="323" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -71,34 +75,78 @@
                                     <action selector="singUpPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="U7w-xG-BiP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIb-eR-3H2" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="53O-n4-XqC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Tld-aT-PBE" firstAttribute="leading" secondItem="BYW-71-YOe" secondAttribute="leading" id="3SX-K2-WsA"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4yl-wS-7d5"/>
+                            <constraint firstItem="IIb-eR-3H2" firstAttribute="leading" secondItem="aW8-ts-mct" secondAttribute="leading" id="62y-F4-igl"/>
+                            <constraint firstItem="4yE-WM-Qsa" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="B0l-2Z-K1b"/>
                             <constraint firstItem="aW8-ts-mct" firstAttribute="top" secondItem="i95-H3-guL" secondAttribute="bottom" constant="8" symbolic="YES" id="BBD-MJ-WDl"/>
-                            <constraint firstItem="BfK-r2-cZA" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="BVP-8q-Nba"/>
                             <constraint firstItem="aW8-ts-mct" firstAttribute="trailing" secondItem="i95-H3-guL" secondAttribute="trailing" id="CCE-hR-Q7B"/>
-                            <constraint firstItem="BfK-r2-cZA" firstAttribute="centerY" secondItem="BYW-71-YOe" secondAttribute="centerY" id="NUx-JM-cbI"/>
+                            <constraint firstItem="4yE-WM-Qsa" firstAttribute="centerY" secondItem="BYW-71-YOe" secondAttribute="centerY" id="ChI-RD-6kV"/>
+                            <constraint firstItem="4yE-WM-Qsa" firstAttribute="centerX" secondItem="Fiu-1E-Qxu" secondAttribute="centerX" id="IYZ-Q7-ddD"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="leading" secondItem="Fiu-1E-Qxu" secondAttribute="leading" id="R8U-3r-JsM"/>
                             <constraint firstItem="Tld-aT-PBE" firstAttribute="trailing" secondItem="BYW-71-YOe" secondAttribute="trailing" id="TFk-4L-2EQ"/>
                             <constraint firstItem="Fiu-1E-Qxu" firstAttribute="leading" secondItem="BYW-71-YOe" secondAttribute="leading" id="U4w-KV-rOp"/>
+                            <constraint firstItem="IIb-eR-3H2" firstAttribute="trailing" secondItem="aW8-ts-mct" secondAttribute="trailing" id="X1i-Zd-qVo"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="trailing" secondItem="Fiu-1E-Qxu" secondAttribute="trailing" id="ZJP-Dh-om2"/>
+                            <constraint firstAttribute="bottom" secondItem="IIb-eR-3H2" secondAttribute="bottom" constant="20" symbolic="YES" id="aGZ-Ji-Wcg"/>
                             <constraint firstItem="i95-H3-guL" firstAttribute="top" secondItem="Fiu-1E-Qxu" secondAttribute="bottom" constant="8" symbolic="YES" id="axA-3C-mzy"/>
-                            <constraint firstItem="BfK-r2-cZA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-28" id="bZ1-uW-CzF"/>
+                            <constraint firstItem="4yE-WM-Qsa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="cB0-DD-Eh3"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="cVe-Wv-pvn"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="cuq-ey-gFY"/>
                             <constraint firstItem="aW8-ts-mct" firstAttribute="leading" secondItem="i95-H3-guL" secondAttribute="leading" id="ecR-Gm-ZxH"/>
-                            <constraint firstAttribute="trailing" secondItem="BfK-r2-cZA" secondAttribute="trailing" id="f5l-NL-IIC"/>
                             <constraint firstItem="Fiu-1E-Qxu" firstAttribute="trailing" secondItem="BYW-71-YOe" secondAttribute="trailing" id="m1F-Fg-RLi"/>
                             <constraint firstItem="BYW-71-YOe" firstAttribute="top" secondItem="Tld-aT-PBE" secondAttribute="bottom" constant="8" symbolic="YES" id="oTj-y0-xrR"/>
                             <constraint firstItem="Fiu-1E-Qxu" firstAttribute="top" secondItem="BYW-71-YOe" secondAttribute="bottom" constant="8" symbolic="YES" id="zVN-hT-QbU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4yE-WM-Qsa"/>
+                                <exclude reference="IIb-eR-3H2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="B0l-2Z-K1b"/>
+                                <exclude reference="ChI-RD-6kV"/>
+                                <exclude reference="IYZ-Q7-ddD"/>
+                                <exclude reference="cB0-DD-Eh3"/>
+                                <exclude reference="62y-F4-igl"/>
+                                <exclude reference="X1i-Zd-qVo"/>
+                                <exclude reference="aGZ-Ji-Wcg"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="4yE-WM-Qsa"/>
+                                <include reference="IIb-eR-3H2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="B0l-2Z-K1b"/>
+                                <include reference="ChI-RD-6kV"/>
+                                <include reference="IYZ-Q7-ddD"/>
+                                <include reference="cB0-DD-Eh3"/>
+                                <include reference="62y-F4-igl"/>
+                                <include reference="X1i-Zd-qVo"/>
+                                <include reference="aGZ-Ji-Wcg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="EKL-D3-6Bp"/>
                     <connections>
+                        <outlet property="loginButtonRef" destination="IIb-eR-3H2" id="LgJ-nd-hTf"/>
                         <outlet property="loginText" destination="BYW-71-YOe" id="fC6-wH-RUv"/>
                         <outlet property="passwordText" destination="Fiu-1E-Qxu" id="Ymp-ca-SE2"/>
+                        <outlet property="udacityLoginButton" destination="i95-H3-guL" id="B3k-az-0ic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -189,6 +237,9 @@
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636050000003" blue="0.74242424240000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="243" y="43" width="115" height="35"/>
+                                </variation>
                             </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-eu-QL0">
                                 <rect key="frame" x="0.0" y="158" width="600" height="155"/>
@@ -208,6 +259,9 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="8" y="73" width="584" height="239"/>
+                                        </variation>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -223,18 +277,27 @@
                                     <constraint firstItem="nt3-fF-DRV" firstAttribute="leading" secondItem="CzZ-eu-QL0" secondAttribute="leading" constant="167" id="ktM-tp-yH1"/>
                                     <constraint firstItem="Ag2-SZ-niC" firstAttribute="centerX" secondItem="nt3-fF-DRV" secondAttribute="centerX" id="uGa-go-Poa"/>
                                 </constraints>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="155" width="600" height="358"/>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="today?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhC-H3-8Cb">
                                 <rect key="frame" x="257" y="88" width="86" height="36"/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636050000003" blue="0.74242424240000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="254" y="86" width="93" height="35"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Where are you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rt-U7-5fv">
                                 <rect key="frame" x="208" y="0.0" width="186" height="36"/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.00051182636052439457" blue="0.74242424242424243" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="204" y="0.0" width="194" height="35"/>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7Q-UJ-3Ab">
                                 <rect key="frame" x="200" y="446" width="200" height="30"/>
@@ -316,7 +379,7 @@
                                     <action selector="submitButtonPressed:" destination="vt1-np-GwI" eventType="touchUpInside" id="laA-NW-it6"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter a link to share here" placeholder="Enter a link to share here" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dmS-iJ-isr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter a link to share here" placeholder="Enter a link to share here" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dmS-iJ-isr">
                                 <rect key="frame" x="8" y="94" width="584" height="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -325,7 +388,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular">
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="16" y="41" width="568" height="21"/>
                                     <mask key="constraints">
                                         <exclude reference="hZK-vB-3NC"/>
                                     </mask>
@@ -354,13 +418,13 @@
                                 <exclude reference="dmS-iJ-isr"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="rjf-Wp-o4B"/>
                                 <exclude reference="E7x-Po-Uc2"/>
                                 <exclude reference="nxq-qY-Hxd"/>
                                 <exclude reference="zGM-n7-f5h"/>
                                 <exclude reference="KjN-9e-5oY"/>
                                 <exclude reference="gnc-RX-RkO"/>
                                 <exclude reference="nTe-5J-dwP"/>
-                                <exclude reference="rjf-Wp-o4B"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -370,13 +434,13 @@
                                 <include reference="dmS-iJ-isr"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="rjf-Wp-o4B"/>
                                 <include reference="E7x-Po-Uc2"/>
                                 <include reference="nxq-qY-Hxd"/>
                                 <include reference="zGM-n7-f5h"/>
                                 <include reference="KjN-9e-5oY"/>
                                 <include reference="gnc-RX-RkO"/>
                                 <include reference="nTe-5J-dwP"/>
-                                <include reference="rjf-Wp-o4B"/>
                             </mask>
                         </variation>
                     </view>
@@ -505,6 +569,6 @@
     <resources>
         <image name="List" width="32" height="32"/>
         <image name="Map" width="32" height="32"/>
-        <image name="Udacity" width="1536" height="2048"/>
+        <image name="Udacity" width="512" height="682"/>
     </resources>
 </document>

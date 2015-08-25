@@ -12,4 +12,8 @@ struct StudentBio {
     var firstName: String!
     var lastName: String!
     var imageUrl: String!
+    
+    init(){
+        
+    }
 }
