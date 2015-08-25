@@ -77,7 +77,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
             showMessage("Cancelled", message: "Facebook request cancelled")
         }
         else {
-            
+            showLoadingIndeterminate("Logging in...")
             getApiClient().loginWithFacebook(loginSuccess, onError: loginFailed)
         }
     }

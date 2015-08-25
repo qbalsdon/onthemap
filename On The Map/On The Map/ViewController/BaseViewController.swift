@@ -39,6 +39,18 @@ class BaseViewController: UIViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func showMessage(title: String!, message: String!, onEnd: () -> ()){
+        var searchTextField: UITextField?
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let cancel = UIAlertAction(title: "Ok", style: .Cancel) { (action) -> Void in
+            onEnd()
+        }
+        
+        alertController.addAction(cancel)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     func showMessageWithTwoButtons(title: String!, message: String!, positiveText: String!, onSuccess: () -> ()){
         var searchTextField: UITextField?
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)

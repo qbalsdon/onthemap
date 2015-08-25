@@ -8,11 +8,16 @@
 
 import UIKit
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UITextFieldDelegate {
     var location: LocationAnnotation!
     
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var findButton: UIButton!
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     func setUpNavBar(){
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -28,6 +33,7 @@ class AddLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         findButton.layer.cornerRadius = 10
+        locationTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     

@@ -18,7 +18,7 @@ struct StudentInformation {
     var mediaURL : String!
     var objectId : String!
     var uniqueKey : String!
-    var updatedAt : String!
+    var updatedAt : NSDate!
     
     init(){
     }
@@ -33,6 +33,10 @@ struct StudentInformation {
         mediaURL = data.valueForKey("mediaURL") as! String
         objectId = data.valueForKey("objectId") as! String
         uniqueKey = data.valueForKey("uniqueKey") as! String
-        updatedAt = data.valueForKey("updatedAt") as! String
+        let updated = data.valueForKey("updatedAt") as! String
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        updatedAt = dateFormatter.dateFromString(updated)
     }
 }

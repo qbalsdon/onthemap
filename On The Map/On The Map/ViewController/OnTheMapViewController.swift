@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import MBProgressHUD
 
 class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
     
@@ -23,11 +22,11 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    override func receiveLocations(Locations: [LocationAnnotation]) {
-        MBProgressHUD.hideAllHUDsForView(view, animated: true)
+    override func receiveLocations(locations: [LocationAnnotation]) {
+        super.receiveLocations(locations)
         let removeAnnotation = mapView.annotations.filter { $0 !== self.mapView.userLocation }
         mapView.removeAnnotations(removeAnnotation)
-        for loc in Locations{
+        for loc in locations{
             // Drop a pin
             mapView.addAnnotation(loc)
         }

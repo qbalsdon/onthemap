@@ -56,9 +56,9 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
         showLoadingIndeterminate("Uploading location")
         if oldLocation != nil {
             userLocation.studentInfo.objectId = oldLocation.studentInfo.objectId
-            getApiClient().updateUserLocation(userLocation, onSuccess: closeView, onError: showError)
+            getApiClient().updateUserLocation(userLocation, onSuccess: success, onError: showError)
         } else {
-            getApiClient().postUserLocation(userLocation, onSuccess: closeView, onError: showError)
+            getApiClient().postUserLocation(userLocation, onSuccess: success, onError: showError)
         }
     }
     
@@ -79,7 +79,13 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 MBProgressHUD.hideAllHUDsForView(view, animated: true)
             }
-            
+            if error != nil{
+                self.showMessage("Geocode Error", message: "Could not find location on the map", onEnd: {
+                    () -> Void in
+                        self.closeView()
+                })
+                return
+            }
             if response.mapItems != nil && response.mapItems.count > 0 {
                 let firstLocation = response.mapItems[0] as! MKMapItem
                 
@@ -94,6 +100,11 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
                 self.mapView.addAnnotation(self.userLocation)
             }
         }
+    }
+    
+    func success(){
+        getApiClient().lastLocationSet = []
+        closeView()
     }
     
     func closeView(){

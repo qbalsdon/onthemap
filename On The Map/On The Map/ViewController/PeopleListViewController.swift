@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class PeopleListViewController: TabBarViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -24,9 +23,13 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
-    override func receiveLocations(Locations: [LocationAnnotation]) {
-        MBProgressHUD.hideAllHUDsForView(view, animated: true)
-        dataSource = Locations
+    override func receiveLocations(locations: [LocationAnnotation]) {
+        super.receiveLocations(locations)
+        
+        dataSource = locations.sorted({ (l1: LocationAnnotation, l2: LocationAnnotation) -> Bool in
+            return l1.studentInfo.updatedAt.timeIntervalSince1970 > l2.studentInfo.updatedAt.timeIntervalSince1970
+        })
+        
         userTable.reloadData()
     }
 

@@ -15,7 +15,7 @@ class ApiClient: NSObject {
     var parseAppId: String!
     var parseRestKey: String!
     var facebookAppId: String!
-    
+    var lastLocationSet: [LocationAnnotation]!
     var userInfo: StudentBio!
     
     let POST = "POST"
@@ -37,7 +37,6 @@ class ApiClient: NSObject {
             }
         }
         userInfo = StudentBio()
-
         super.init()
     }
     
@@ -63,11 +62,11 @@ class ApiClient: NSObject {
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error...
-                println("Error: \(response)")
+            if error != nil { // Handle error...                
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    onError("Connection Error",response.description)
+                    onError("Connection Error","Internet connectivity is down")
                 }
+                return
             }
             var newData = data
             
@@ -175,7 +174,6 @@ class ApiClient: NSObject {
         
         apiCall(PARSE_BASE_URL, apiMethod: "StudentLocation/\(locationInfo.studentInfo.objectId)", httpMethod: PUT, httpBody: body, onSuccess: {
             (result: AnyObject!) -> Void in
-            println(result)
             if let createdAt = result.valueForKey("updatedAt") as? String{
                 onSuccess()
                 return

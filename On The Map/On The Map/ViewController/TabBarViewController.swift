@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class TabBarViewController: BaseViewController {
     
@@ -18,7 +19,11 @@ class TabBarViewController: BaseViewController {
         var refreshButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "refresh")
         navigationItem.setRightBarButtonItems([refreshButton, addLocation], animated: true)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        refresh()
+        if getApiClient().lastLocationSet == nil || getApiClient().lastLocationSet.count == 0 {
+            refresh()
+        } else {
+            receiveLocations(getApiClient().lastLocationSet)
+        }
     }
     
     override func viewDidLoad() {
@@ -34,19 +39,26 @@ class TabBarViewController: BaseViewController {
     func refresh(){
         showLoadingIndeterminate("Downloading Locations")
         getApiClient().getUserLocations(100, skip: 0, onSuccess: receiveLocations, onError: { (title: String!, message: String!) -> () in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                MBProgressHUD.hideAllHUDsForView(view, animated: true)
+            }
             self.showMessage(title, message: message)
         })
     }
     
-    func receiveLocations(Locations: [LocationAnnotation]){
-        preconditionFailure("Class does not override receiveLocations")
+    func receiveLocations(locations: [LocationAnnotation]){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
+        getApiClient().lastLocationSet = locations
     }
     
     func pinTapped(sender: AnyObject!){
-        
+        showLoadingIndeterminate("Checking previous entries...")
         getApiClient().checkUserLocation(
             {
                 (exists: Bool!, location: LocationAnnotation!) -> () in
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    MBProgressHUD.hideAllHUDsForView(view, animated: true)
+                }
                 if  !exists {
                     self.addPin(nil)
                 } else {
@@ -54,6 +66,9 @@ class TabBarViewController: BaseViewController {
                 }
             },
             onError: { (title: String!, message: String!) -> () in
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    MBProgressHUD.hideAllHUDsForView(view, animated: true)
+                }
                 self.showMessage(title, message: message)
             }
         )
