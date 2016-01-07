@@ -27,7 +27,7 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
         navigationController?.navigationBar.translucent = true
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         
-        var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelTapped:")
+        let leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelTapped:")
         leftAddBarButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.setRightBarButtonItems([leftAddBarButtonItem], animated: true)
         
@@ -71,13 +71,12 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
         showLoadingIndeterminate("Finding location...")
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchText
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let search = MKLocalSearch(request: request)
         
         search.startWithCompletionHandler {
-            (response: MKLocalSearchResponse!, error: NSError!) in
+            (response: MKLocalSearchResponse?, error: NSError?) in
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                MBProgressHUD.hideAllHUDsForView(view, animated: true)
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
             if error != nil{
                 self.showMessage("Geocode Error", message: "Could not find location on the map", onEnd: {
@@ -86,17 +85,17 @@ class LocationFinderViewController: BaseViewController, UITextFieldDelegate {
                 })
                 return
             }
-            if response.mapItems != nil && response.mapItems.count > 0 {
-                let firstLocation = response.mapItems[0] as! MKMapItem
+            if response!.mapItems.count > 0 {
+                let firstLocation = response!.mapItems[0] 
                 
-                var span = MKCoordinateSpanMake(0.075, 0.075)
-                var region = MKCoordinateRegion(center: firstLocation.placemark.coordinate, span: span)
+                let span = MKCoordinateSpanMake(0.075, 0.075)
+                let region = MKCoordinateRegion(center: firstLocation.placemark.coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
                 self.userLocation = LocationAnnotation()
                 self.userLocation.studentInfo.firstName = self.getApiClient().userInfo.firstName
                 self.userLocation.studentInfo.lastName = self.getApiClient().userInfo.lastName
-                self.userLocation.studentInfo.latitude = firstLocation.placemark.location.coordinate.latitude
-                self.userLocation.studentInfo.longitude = firstLocation.placemark.location.coordinate.longitude
+                self.userLocation.studentInfo.latitude = firstLocation.placemark.location!.coordinate.latitude
+                self.userLocation.studentInfo.longitude = firstLocation.placemark.location!.coordinate.longitude
                 self.mapView.addAnnotation(self.userLocation)
             }
         }

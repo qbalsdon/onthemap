@@ -30,7 +30,7 @@ class ApiClient: NSObject {
         session = NSURLSession.sharedSession()
         if let path = NSBundle.mainBundle().pathForResource("ApiKey", ofType: "plist") {
             let keys = NSDictionary(contentsOfFile: path)
-            if let dict = keys {
+            if let _ = keys {
                 parseAppId = keys?["ParseApplicationId"] as? String
                 parseRestKey = keys?["ParseRestApiKey"] as? String
                 facebookAppId = keys?["FacebookAppId"] as? String
@@ -43,8 +43,8 @@ class ApiClient: NSObject {
     //MARK: Generic API
     func apiCall(baseUrl: String!, apiMethod: String!, httpMethod: String!, httpBody: String!, onSuccess: (AnyObject!) -> (), onError: (String!, String!) -> ()){
         let stringUrl = baseUrl + apiMethod
-        var urlStr : String = stringUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        var url : NSURL = NSURL(string: urlStr)!
+        let urlStr : String = stringUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let url : NSURL = NSURL(string: urlStr)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = httpMethod
         
@@ -52,7 +52,7 @@ class ApiClient: NSObject {
         
         if (headers != nil){
             for (key, value) in headers{
-                request.addValue(value as? String, forHTTPHeaderField: key as! String)
+                request.addValue((value as? String)!, forHTTPHeaderField: key as! String)
             }
         }
         
@@ -71,11 +71,20 @@ class ApiClient: NSObject {
             var newData = data
             
             if baseUrl == self.UDACITY_BASE_URL {
-                newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
             }
             
             var parsingError: NSError? = nil
-            let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(newData!, options: NSJSONReadingOptions.AllowFragments)
+            } catch error! as NSError {
+                parsingError = error
+                parsedResult = nil
+            } catch {
+                print("\(parsingError)")
+                fatalError()
+            }
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 onSuccess(parsedResult)
             }
@@ -91,13 +100,13 @@ class ApiClient: NSObject {
             if apiMethod == "session" && httpMethod == DELETE{
                 var xsrfCookie: NSHTTPCookie? = nil
                 let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-                for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie] {
+                for cookie in sharedCookieStorage.cookies! as [NSHTTPCookie] {
                     if cookie.name == "XSRF-TOKEN" {
                         xsrfCookie = cookie
                     }
                 }
                 if let xsrfCookie = xsrfCookie {
-                    headers["X-XSRF-TOKEN"] = xsrfCookie.value!
+                    headers["X-XSRF-TOKEN"] = xsrfCookie.value
                 }
 
             }
@@ -139,7 +148,7 @@ class ApiClient: NSObject {
     func logout(onSuccess: () -> (), onError: (String!, String!) -> ()){
         apiCall(UDACITY_BASE_URL, apiMethod: "session", httpMethod: DELETE, httpBody: nil, onSuccess: {
             (result: AnyObject!) -> Void in
-            println(result)
+            print(result)
             if let session: AnyObject = result.valueForKey("session") as AnyObject!{
                 onSuccess()
                 return
@@ -239,7 +248,7 @@ class ApiClient: NSObject {
                         prop[NSHTTPCookieExpires] = date!
                         
                         
-                        var cookie = NSHTTPCookie(properties: prop)
+                        let cookie = NSHTTPCookie(properties: prop)
                         
                         NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie!)
                         

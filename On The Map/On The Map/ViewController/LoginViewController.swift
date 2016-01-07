@@ -68,7 +68,7 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        println("User Logged In")
+        print("User Logged In")
         
         if ((error) != nil) {
             showMessage("Error", message: "Login error. Please try again later")
@@ -105,6 +105,6 @@ class LoginViewController: BaseViewController, FBSDKLoginButtonDelegate {
     }*/
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
+        print("User Logged Out")
     }
 }

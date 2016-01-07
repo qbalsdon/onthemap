@@ -19,17 +19,17 @@ class LocationAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D{
         get {
-            return CLLocationCoordinate2DMake(studentInfo.latitude as! CLLocationDegrees, studentInfo.longitude as! CLLocationDegrees)
+            return CLLocationCoordinate2DMake(studentInfo.latitude as CLLocationDegrees, studentInfo.longitude as CLLocationDegrees)
         }
     }
     
-    var title: String{
+    var title: String?{
         get {
             return "\(studentInfo.firstName) \(studentInfo.lastName)"
         }
     }
     
-    var subtitle: String{
+    var subtitle: String?{
         get {
             return studentInfo.mediaURL
         }

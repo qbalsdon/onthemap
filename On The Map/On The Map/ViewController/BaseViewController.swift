@@ -29,7 +29,6 @@ class BaseViewController: UIViewController {
 
     //MARK: Alerts
     func showMessage(title: String!, message: String!){
-        var searchTextField: UITextField?
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let cancel = UIAlertAction(title: "Ok", style: .Cancel) { (action) -> Void in
@@ -40,7 +39,6 @@ class BaseViewController: UIViewController {
     }
     
     func showMessage(title: String!, message: String!, onEnd: () -> ()){
-        var searchTextField: UITextField?
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let cancel = UIAlertAction(title: "Ok", style: .Cancel) { (action) -> Void in
@@ -52,7 +50,6 @@ class BaseViewController: UIViewController {
     }
     
     func showMessageWithTwoButtons(title: String!, message: String!, positiveText: String!, onSuccess: () -> ()){
-        var searchTextField: UITextField?
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
@@ -71,7 +68,7 @@ class BaseViewController: UIViewController {
     
     //MBProgressHUD
     func showLoadingIndeterminate(message: String!){
-        var loadingNotification = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        let loadingNotification = MBProgressHUD.showHUDAddedTo(view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.Indeterminate
         loadingNotification.labelText = message
     }

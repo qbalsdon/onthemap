@@ -26,7 +26,7 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.translucent = true
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         
-        var leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelTapped:")
+        let leftAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelTapped:")
         navigationItem.setRightBarButtonItems([leftAddBarButtonItem], animated: true)
     }
     

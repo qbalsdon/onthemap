@@ -32,13 +32,13 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if annotation is LocationAnnotation {
             let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
             pinAnnotationView.canShowCallout = true
             pinAnnotationView.animatesDrop = true
             
-            let infoButton = UIButton.buttonWithType(UIButtonType.InfoDark) as! UIButton
+            let infoButton = UIButton(type: UIButtonType.InfoDark)
             pinAnnotationView.rightCalloutAccessoryView = infoButton
             
             //Attempt to lazy load the user image data. The only issue is that the button does not actually refresh
@@ -58,9 +58,9 @@ class OnTheMapViewController: TabBarViewController, MKMapViewDelegate {
         return nil
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? LocationAnnotation {
-            UIApplication.sharedApplication().openURL(NSURL(string: view.annotation.subtitle!)!)
+            UIApplication.sharedApplication().openURL(NSURL(string: annotation.subtitle!)!)
         }
     }
     

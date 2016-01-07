@@ -26,7 +26,7 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     override func receiveLocations(locations: [LocationAnnotation]) {
         super.receiveLocations(locations)
         
-        dataSource = locations.sorted({ (l1: LocationAnnotation, l2: LocationAnnotation) -> Bool in
+        dataSource = locations.sort({ (l1: LocationAnnotation, l2: LocationAnnotation) -> Bool in
             return l1.studentInfo.updatedAt.timeIntervalSince1970 > l2.studentInfo.updatedAt.timeIntervalSince1970
         })
         
@@ -40,7 +40,7 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell")! as UITableViewCell
         let loc = dataSource[indexPath.row]
         
         // Set the name and image
@@ -52,6 +52,6 @@ class PeopleListViewController: TabBarViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let location = dataSource[indexPath.row] as LocationAnnotation
-        UIApplication.sharedApplication().openURL(NSURL(string: location.subtitle)!)
+        UIApplication.sharedApplication().openURL(NSURL(string: location.subtitle!)!)
     }
 }
